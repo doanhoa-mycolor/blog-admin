@@ -1,25 +1,38 @@
 {
-  "name": "test-blog-admin",
+  "name": "blog-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 5555",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "bunx biome format --write ./src",
+    "check": "bunx biome check --write ./src",
+    "prisma:generate": "prisma generate --schema=./prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema=./prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=./prisma/schema.prisma",
+    "prisma:seed": "ts-node --compiler-options {\\\"module\\\":\\\"CommonJS\\\"} prisma/seed.ts"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.2"
+    "@prisma/client": "^6.7.0",
+    "babel-plugin-react-compiler": "^19.1.0-rc.2",
+    "jose": "^6.0.11",
+    "next": "^15.3.2",
+    "prisma": "^6.8.2",
+    "ra-data-json-server": "^5.8.1",
+    "react-admin": "^5.1.2"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@biomejs/biome": "1.9.4",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.2",
-    "@eslint/eslintrc": "^3"
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "ts-node": "^10.9.2",
+    "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   }
 }
